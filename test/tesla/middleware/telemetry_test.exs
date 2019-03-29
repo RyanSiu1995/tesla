@@ -24,7 +24,7 @@ defmodule Tesla.Middleware.TelemetryTest do
       "telemetry_test",
       [:tesla, :request],
       fn [:tesla, :request], response, meta, _config ->
-        send(self(), {:ok_called, is_integer(response), meta})
+        send(self(), {:ok_called, is_number(response), meta, response})
       end,
       nil
     )
@@ -41,7 +41,7 @@ defmodule Tesla.Middleware.TelemetryTest do
       "telemetry_test_error",
       [:tesla, :request],
       fn [:tesla, :request], response, meta, _config ->
-        send(self(), {:error_called, is_integer(response), meta})
+        send(self(), {:error_called, is_number(response), meta, response})
       end,
       nil
     )
